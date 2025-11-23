@@ -18,17 +18,17 @@ let sonido = true
 
 function preload() {
   // put preload code here
-  imagenFondo = loadImage("./images/fondojuego00.png")
-  imagenInicio = loadImage("./images/fondoinicio00.jpg")
-  personaje = loadImage("./images/miku00.gif")
-  pared = loadImage("./images/pared.png")
+  imagenFondo = loadImage("./images/fondo.png")
+  imagenInicio = loadImage("./images/inicio.webp")
+  personaje = loadImage("./images/ufored.png")
+  pared = loadImage("./images/Pinchos.png")
   musicaRecord = loadSound("./sounds/aplauso.wav")
   musicaFondo = loadSound("./sounds/musicafondo.mp3")
 }
 
 function setup() {
   // put setup code here
-  createCanvas(1000,512)
+  createCanvas(1366,640)
   noCursor()
 }
 
@@ -71,7 +71,7 @@ function draw() {
       }
     }
 
-    image(personaje,posX,posY,60,60)
+    image(personaje,posX,posY,70,60)
     text("Puntaje: " + puntuacion,width/2-60,30)
 
   } else if (estado === 0) {
@@ -80,9 +80,10 @@ function draw() {
     cursor()
     fill(255) 
     textSize(24)
-    image(imagenInicio,0,0,450,600) 
-    text("Puntaje Máximo: " + mejorPuntuacion,600, 100)
-    text("Clic para jugar",600, 200)
+    image(imagenInicio,0,0,821,640) 
+    text("Puntaje Máximo: " + mejorPuntuacion,900, 100)
+    text("Clic para jugar",900, 200)
+    image(personaje,900,300,70,60)
     if (mejorPuntuacion > recordAnterior) {
       if (!musicaRecord.isPlaying() && sonido) {
         musicaRecord.play(duration = 2)
