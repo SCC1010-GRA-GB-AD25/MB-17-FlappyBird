@@ -9,6 +9,7 @@ let x = 0
 let estado = 0 // 0 = inicio; 1 = jugar
 let wallX = []
 let wallY = []
+let wallPassed = []
 let musicaRecord
 let musicaFondo
 let puntuacion = 0
@@ -53,12 +54,14 @@ function draw() {
 
       if (wallX[i] < -pared.width) {
         wallX[i] = width + 80
-        wallY[i] = random(200,300)
+        wallY[i] = random(200,500)
+        wallPassed[i] = false
       }
       //Puntaje
-      if (wallX[i] === posX) {
+      if (!wallPassed[i] && wallX[i] < posX) {
         puntuacion = puntuacion + 1
         mejorPuntuacion = max(mejorPuntuacion,puntuacion)
+        wallPassed[i] = true
       }
 
       wallX[i] = wallX[i] - 5
@@ -110,6 +113,7 @@ function mousePressed() {
     wallY[0] = random(200,300)
     wallY[1] = random(200,300)
     wallY[2] = random(200,300)
+    wallPassed = [false, false, false]
     if (musicaRecord.isPlaying()) {
       musicaRecord.stop()
     }
