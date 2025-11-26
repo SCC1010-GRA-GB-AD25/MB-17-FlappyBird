@@ -24,7 +24,7 @@ function preload() {
   personaje = loadImage("./images/ufored.png")
   pared = loadImage("./images/Pinchos.png")
   musicaRecord = loadSound("./sounds/aplauso.wav")
-  musicaFondo = loadSound("./sounds/musicafondo.mp3")
+  musicaFondo = loadSound("./sounds/musicafondogd.mp3")
 }
 
 function setup() {
@@ -84,9 +84,9 @@ function draw() {
     fill(255) 
     textSize(24)
     image(imagenInicio,0,0,821,640) 
-    text("Puntaje Máximo: " + mejorPuntuacion,900, 100)
-    text("Clic para jugar",900, 200)
-    image(personaje,900,300,70,60)
+    text("Puntaje Máximo: " + mejorPuntuacion,1000, 100)
+    text("Clic para jugar",1000, 200)
+    image(personaje,1050,300,70,60)
     if (mejorPuntuacion > recordAnterior) {
       if (!musicaRecord.isPlaying() && sonido) {
         musicaRecord.play(duration = 2)
