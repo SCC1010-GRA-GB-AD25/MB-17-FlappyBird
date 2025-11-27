@@ -109,7 +109,7 @@ function mousePressed() {
     recordAnterior = mejorPuntuacion
     sonido = true
     noCursor()
-    wallX = [1100, 1400, 1700]
+    wallX = [1100, 1600, 2100]
     wallY[0] = random(200,300)
     wallY[1] = random(200,300)
     wallY[2] = random(200,300)
