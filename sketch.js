@@ -1,5 +1,6 @@
 let imagenFondo
 let imagenInicio
+let imagenFlappyInicio
 let personaje
 let pared
 let posY = 100
@@ -16,15 +17,21 @@ let puntuacion = 0
 let mejorPuntuacion = 0
 let recordAnterior = 0
 let sonido = true
+let muerte
+let fuente
+
 
 function preload() {
   // put preload code here
   imagenFondo = loadImage("./images/fondo.png")
-  imagenInicio = loadImage("./images/inicio.webp")
+  imagenInicio = loadImage("./images/fondo.png")
+  imagenFlappyInicio = loadImage("./images/flappy-dash.png")
   personaje = loadImage("./images/ufored.png")
   pared = loadImage("./images/Pinchos.png")
-  musicaRecord = loadSound("./sounds/aplauso.wav")
+  musicaRecord = loadSound("./sounds/magicExplosion.ogg")
   musicaFondo = loadSound("./sounds/musicafondogd.mp3")
+  muerte = loadSound("./sounds/sonidoMuerte.mp3")
+  fuente = loadFont("./fonts/fuente.otf")
 }
 
 function setup() {
@@ -68,8 +75,9 @@ function draw() {
 
       //colisiones
       if (posY <-60 || posY > height ||
-         (abs(wallX[i]-posX) < 60 && abs(wallY[i]-posY) > 100)) {
+         (abs(wallX[i]-posX) < 60 && abs(wallY[i]-posY) > 70)) {
         musicaFondo.stop()
+        muerte.play()
         estado = 0
       }
     }
@@ -83,13 +91,16 @@ function draw() {
     cursor()
     fill(255) 
     textSize(24)
-    image(imagenInicio,0,0,821,640) 
-    text("Puntaje Máximo: " + mejorPuntuacion,1000, 100)
-    text("Clic para jugar",1000, 200)
-    image(personaje,1050,300,70,60)
+    image(imagenInicio,0,0,1366,640)
+    imageMode(CENTER)
+    image(imagenFlappyInicio,width/2,height/2,1000,590)
+    textFont(fuente)
+    fill(254,207,15)
+    text("Puntaje Máximo: " + mejorPuntuacion,560, 500)
+    
     if (mejorPuntuacion > recordAnterior) {
       if (!musicaRecord.isPlaying() && sonido) {
-        musicaRecord.play(duration = 2)
+        musicaRecord.play(duration = 0.1)
         sonido = false
       }
     }
@@ -98,7 +109,7 @@ function draw() {
   
 }
 
-function mousePressed() {
+function mousePressed()  {
   if (estado == 0) {
     estado = 1
     posX = 100
